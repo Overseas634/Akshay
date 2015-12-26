@@ -1,0 +1,40 @@
+<div class="container">
+<div class ="row">
+	<div class="col-sm-6">
+	 Country FORM
+	 <div class="row">
+      <form name="form">
+     <div class="col-sm-6">
+    <label > Country Name</label>
+    <input type="text" placeholder="Enter Country Name" class="form-control">
+     </div>
+      <div class="col-sm-6">
+    <label > Country Code</label>
+    <input type="text" placeholder="Enter Country code" class="form-control">
+     </div>
+      <div class="col-sm-6">
+    <label > Country Currency</label>
+    <input type="text" placeholder="Enter Country Currency" class="form-control">
+     </div>
+      <div class="col-sm-12" ng-repeat="port in port">
+    <label > Port No {{$index+1}}</label>
+    <input type="text" placeholder="Enter Port Name" class="form-control" ng-model="port.name">
+     </div>
+     <div class="col-sm-12">
+     <button class="form-control col-sm-3" ng-click="addPort()">Add More Port</button>
+     </div>
+     <div>
+  <button type="submit" class="form-control col-sm-3 btn btn-primary">Submit</button>
+</div>
+      </form>
+
+
+	 </div>
+	</div>
+	<div class="col-sm-5">
+		Listing Of Data
+		 <div id="grid1" ui-grid="gridOptions" ui-grid-exporter ui-grid-selection class="grid"></div>
+	</div>
+	<div class="col-sm-1 "></div>
+</div>
+</div>
