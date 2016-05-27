@@ -12,6 +12,12 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/departments', require('./api/department'));
+  app.use('/api/mediums', require('./api/medium'));
+  app.use('/api/standards', require('./api/standard'));
+  app.use('/api/facultys', require('./api/faculty'));
+  // app.use('/api/students', require('./api/student'));
+  app.use('/api/subjects', require('./api/subject'));
 
   app.use('/auth', require('./auth'));
 

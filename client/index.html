@@ -7,15 +7,18 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-    <title></title>
+    <title> School ERP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+   <!--  <meta property="og:type" content="article" seo-head></meta>
+    <meta property="og:title" content="{{ title }}" seo-head></meta> -->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
-      <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.min.css">
+      <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -24,6 +27,37 @@
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="assets/css/AdminLTE.css">
+      <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+      <link rel="stylesheet" href="assets/css/skins/_all-skins.css">
+      <link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-black-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-black-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-black.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-black.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-blue-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-blue-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-blue.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-blue.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-green-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-green-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-green.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-green.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-purple-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-purple-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-purple.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-purple.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-red-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-red-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-red.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-red.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-yellow-light.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-yellow-light.min.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-yellow.css">
+      <link rel="stylesheet" href="assets/css/skins/skin-yellow.min.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <link rel="stylesheet" href="components/oauth-buttons/oauth-buttons.css">
@@ -36,22 +70,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-<navbar></navbar>
-<!-- <div class="container"> -->
- <div class="row">
- <div class="col-sm-2 col-xs-2"><ul>Master<li>
- <a ui-sref="consignee({})">Consignee Master</a>  
- </li>
- <li><a ui-sref="country({})">Country Master </a></li>
-</ul> </div>
- 
-  <div class="col-sm-10 col-xs-10">
-    <div ui-view=""></div>
-     </div>
-</div>
-<!-- </div> -->
 
-<footer></footer>
+<!-- <div class="container"> -->
+  <div class="skin-blue sidebar-mini">
+    <div ui-view=""></div>
+  </div>
     
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -81,27 +104,42 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
-      <script src="bower_components/angular-ui-grid/ui-grid.min.js">
+      <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.js"></script>
+      <script src="bower_components/angular-messages/angular-messages.js"></script>
+      <script src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/angular-seo-header/dist/angular-seo-header.min.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="components/auth/auth.module.js"></script>
       <script src="app/admin/admin.module.js"></script>
+      <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
+      <script src="app/sidebar/sidebar.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
-      <script src="app/account/account.js"></script>
+      <script src="app/Department/master.js"></script>
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
       <script src="app/consignee/consignee.js"></script>
       <script src="app/country/country.js"></script>
+      <script src="app/faculty/master.js"></script>
       <script src="app/index/dashboard.js"></script>
-      <script src="app/main/index/dashboard.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
+      <script src="app/medium/master.js"></script>
+      <script src="app/menu/master.js"></script>
+      <script src="app/notification/notification.directive.js"></script>
+      <script src="app/sidebar/sidebar.directive.js"></script>
+      <script src="app/account/account.js"></script>
+      <script src="app/standard/master.js"></script>
+      <script src="app/student/master.js"></script>
+      <script src="app/subject/master.js"></script>
+      <script src="assets/js/app.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>

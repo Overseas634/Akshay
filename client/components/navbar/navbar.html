@@ -1,30 +1,186 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">erp</a>
-    </div>
-    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
-        </li>
-        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
-      </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-  
+
+<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController" ng-show="nav.isLoggedIn()">
+   <header class="main-header">
+      <!-- Logo -->
+      <a class="logo" href="index2.html" ng-click="isCollapsed = true">
+         <!-- mini logo for sidebar mini 50x50 pixels -->
+         <span class="logo-mini"><b>S</b>ERP</span>
+         <!-- logo for regular state and mobile devices -->
+         <span class="logo-lg"><b>School</b>ERP</span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav role="navigation" class="navbar navbar-static-top">
+         <!-- Sidebar toggle button-->
+         <a role="button" data-toggle="offcanvas"  class="sidebar-toggle"  ng-click="nav.Toggle()">
+         <span class="sr-only">Toggle navigation</span>
+         </a>
+         <!-- Navbar Right Menu -->
+         <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+               <!-- Messages: style can be found in dropdown.less-->
+               <li class="messages-menu">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">4</span>
+                  </a>
+               </li>
+               <!-- Notifications: style can be found in dropdown.less -->
+               <li class="notifications-menu">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                  </a>
+               </li>
+               <!-- Tasks: style can be found in dropdown.less -->
+               <li class="tasks-menu">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">9</span>
+                  </a>
+               </li>
+               <!-- User Account: style can be found in dropdown.less -->
+               <li class="Dropdown user user-menu" >
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#" >
+                  <img alt="User Image" class="user-image" src="assets/images/user2-160x160.jpg">
+                  <span class="hidden-xs">{{ nav.getCurrentUser().name }}</span>
+                  </a>
+                  <ul class="dropdown-menu"  uib-collapse="isCollapsed">
+                     <!-- User image -->
+                     <li class="user-header">
+                        <img alt="User Image" class="img-circle" src="assets/images/user2-160x160.jpg">
+                        <p>
+                           Alexander Pierce - Web Developer
+                           <small>Member since Nov. 2012</small>
+                        </p>
+                     </li>
+                     <!-- Menu Body -->
+                     <li class="user-body">
+                        <div class="row">
+                           <div class="col-xs-4 text-center">
+                              <a href="#">Followers</a>
+                           </div>
+                           <div class="col-xs-4 text-center">
+                              <a href="#">Sales</a>
+                           </div>
+                           <div class="col-xs-4 text-center">
+                              <a href="#">Friends</a>
+                           </div>
+                        </div>
+                        <!-- /.row -->
+                     </li>
+                     <!-- Menu Footer-->
+                     <li class="user-footer">
+                        <div class="pull-left">
+                           <a class="btn btn-default btn-flat" href="#">Profile</a>
+                        </div>
+                        <div class="pull-right">
+                           <a class="btn btn-default btn-flat" href="#">Sign out</a>
+                        </div>
+                     </li>
+                  </ul>
+               </li>
+               <!-- Control Sidebar Toggle Button -->
+               <li>
+                  <a data-toggle="control-sidebar" href="#"><i class="fa fa-gears"></i></a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+   </header>
+   <aside class="main-sidebar" collapse="isCollapsed">
+         <!-- sidebar: style can be found in sidebar.less -->
+         <section class="sidebar" style="height: auto;">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+               <div class="pull-left image">
+                  <img alt="User Image" class="img-circle" src="assets/images/user2-160x160.jpg">
+               </div>
+               <div class="pull-left info">
+                  <p>{{ nav.getCurrentUser().name }}</p>
+                  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+               </div>
+            </div>
+            <!-- search form -->
+            <form class="sidebar-form" method="get" action="#">
+               <div class="input-group">
+                  <input type="text" placeholder="Search..." class="form-control" name="q">
+                  <span class="input-group-btn">
+                  <button class="btn btn-flat" id="search-btn" name="search" type="submit"><i class="fa fa-search"></i>
+                  </button>
+                  </span>
+               </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" >
+               <li class="header">MAIN NAVIGATION</li>
+               <!-- <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Department</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Faculty</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Medium</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Standard</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Student</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/widgets.html">
+                  <i class="fa fa-th"></i> <span>Subject</span>
+                  <small class="label pull-right bg-green">new</small>
+                  </a>
+               </li>
+               <li>
+                  <a href="pages/calendar.html">
+                  <i class="fa fa-calendar"></i> <span>Student</span>
+                  <small class="label pull-right bg-red">3</small>
+                  </a>
+               </li> -->
+               <li class="treeview" ng-class="{'active': isActive}" ng-click="isActive=!isActive">
+                <a href="#">
+                  <i class="fa fa-table"></i> <span>Master</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/Department/Master"><i class="fa fa-circle-o"></i> Department</a></li>
+                  <li><a href="/faculty/master"><i class="fa fa-circle-o"></i> Faculty</a></li>
+                  <li><a href="/medium/master"><i class="fa fa-circle-o"></i> Medium</a></li>
+                  <li><a href="/standard/master"><i class="fa fa-circle-o"></i> Standard</a></li>
+                  <li><a href="/student/master"><i class="fa fa-circle-o"></i> Student</a></li>
+                  <li><a href="/subject/master"><i class="fa fa-circle-o"></i> Subject</a></li>
+                
+                </ul>
+               </li>
+               <li>
+                  <a href="pages/mailbox/mailbox.html">
+                  <i class="fa fa-envelope"></i> <span>Master</span>
+                  <small class="label pull-right bg-yellow">12</small>
+                  </a>
+               </li>
+            </ul>
+         </section>
+         <!-- /.sidebar -->
+      </aside>
 </div>
+

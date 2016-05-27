@@ -1,0 +1,15 @@
+/*----------------------------*\
+Project Title: School ERP
+Project Description: Responsive in nature, for Desktop, mobile, Tablet, Ipad;
+Author: Sumeet Shedge(UI Developer),Akshay Gaykar(Angualr Developer);
+/*----------------------------*/
+
+.navbar {
+	margin-bottom: 0;
+}
+input.form-control, select.form-control {
+	font-size: 11px;
+}
+
+/*personal
+dfinancial*/

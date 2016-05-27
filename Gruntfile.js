@@ -367,6 +367,7 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
+            'assets/css/**/*',
             'index.html'
           ]
         }, {
@@ -533,7 +534,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.client %>',
-          src: ['{app,components}/**/!(*.spec).js'],
+          src: ['{app,components,assets}/**/!(*.spec).js'],
           dest: '.tmp'
         }]
       },
@@ -576,7 +577,7 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.client %>/index.html': [
                [
-                 '.tmp/{app,components}/**/!(*.spec|*.mock).js',
+                 '.tmp/{app,components,assets}/**/!(*.spec|*.mock).js',
                  '!{.tmp,<%= yeoman.client %>}/app/app.js'
                ]
             ]
@@ -597,7 +598,8 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css'
+            '<%= yeoman.client %>/{app,components,assets,bower_components/font-awesome/css/}/**/*.css'
+
           ]
         }
       }
