@@ -19,6 +19,12 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/thing/thing.socket').register(socket);
+  require('../api/department/department.socket').register(socket);
+  require('../api/medium/medium.socket').register(socket);
+  require('../api/country/country.socket').register(socket);
+  require('../api/city/city.socket').register(socket);
+  require('../api/state/state.socket').register(socket);
+  require('../api/location/location.socket').register(socket);
 
 }
 

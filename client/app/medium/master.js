@@ -28,19 +28,20 @@ $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
 $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.OPTIONS);
 };
  this.$http = $http;
+ this.$scope =  $scope
    $http.get('/api/mediums').then(response => {
       this.awesomeThings = response.data;
     $scope.gridOptions.data = response.data
     $interval( function() {$scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);}, 0, 1);
-      socket.syncUpdates('thing', this.awesomeThings);
+    socket.syncUpdates('medium', $scope.gridOptions.data);
     });
 
 
 }
  addMediums() {
     if (this.newMedium) {
-      this.$http.post('/api/mediums', { name: this.newMedium });
-      this.newMedium = '';
+      this.$http.post('/api/mediums', { name: this.newMedium })
+
     }
   }
   }

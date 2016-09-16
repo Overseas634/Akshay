@@ -16,8 +16,12 @@ module.exports = function(app) {
   app.use('/api/mediums', require('./api/medium'));
   app.use('/api/standards', require('./api/standard'));
   app.use('/api/facultys', require('./api/faculty'));
-  // app.use('/api/students', require('./api/student'));
+
   app.use('/api/subjects', require('./api/subject'));
+  app.use('/api/countries', require('./api/country'));
+  app.use('/api/cities', require('./api/city'));
+  app.use('/api/states', require('./api/state'));
+  app.use('/api/locations', require('./api/location'));
 
   app.use('/auth', require('./auth'));
 

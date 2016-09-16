@@ -10,6 +10,13 @@ angular.module('erpApp')
         controllerAs: 'main',
         authenticate:true
       })
+       .state('Department', {
+        url: '/Department/Master',
+        templateUrl: 'app/Department/Master.html',
+        controller: 'DepartmentMasterController',
+        controllerAs: 'DepartmentMaster',
+        authenticate:true
+      })
        .state('index', {
         url: '/index',
         templateUrl: 'app/index/dashboard.html',
@@ -17,58 +24,28 @@ angular.module('erpApp')
         controllerAs: 'index',
         authenticate:true
       })
-        .state('Department', {
-        url: '/Department/Master',
-        templateUrl: 'app/Department/Master.html',
-        controller: 'DepartmentMasterController',
-        controllerAs: 'DepartmentMaster',
-        authenticate:true
+       .state('country', {
+        url: '/country/master',
+        templateUrl: 'app/country/country.html',
+        controller: 'CountryMasterController',
+        controllerAs: 'countryMaster'
       })
-      .state('Subject', {
-          url: '/subject/master',
-          templateUrl: 'app/subject/master.html',
-          controller: 'SubjectMasterController',
-          controllerAs: 'SubjectMaster',
-          authenticate:true
-        })
-      .state('Standard', {
-          url: '/standard/master',
-          templateUrl: 'app/standard/master.html',
-          controller: 'StandardMasterController',
-          controllerAs: 'StandardMaster',
-          authenticate:true
-        })
-      .state('Student', {
-          url: '/student/master',
-          templateUrl: 'app/student/master.html',
-          controller: 'StudentMasterController',
-          controllerAs: 'StudentMaster',
-          authenticate:true
-        })      
-      .state('Medium', {
-          url: '/medium/master',
-          templateUrl: 'app/medium/master.html',
-          controller: 'MediumMasterController',
-          controllerAs: 'MediumMaster',
-          authenticate:true
-        })      
-      .state('Faculty', {
-          url: '/faculty/master',
-          templateUrl: 'app/faculty/master.html',
-          controller: 'FacultyMasterController',
-          controllerAs: 'FacultyMaster',
-          authenticate:true
-        })      
-      //  .state('consignee', {
-      //   url: '/Master/consignee',
-      //   templateUrl: 'app/consignee/consignee.html',
-      //   controller: 'consigneeController',
-      //   controllerAs: 'consignee'
-      // })
-      //  .state('country', {
-      //   url: '/Master/country',
-      //   templateUrl: 'app/country/country.html',
-      //   controller: 'countryController',
-      //   controllerAs: 'country'
-      // });
+       .state('city', {
+        url: '/city/master',
+        templateUrl: 'app/city/city.html',
+        controller: 'CityMasterController',
+        controllerAs: 'cityMaster'
+      })
+       .state('state', {
+        url: '/state/master',
+        templateUrl: 'app/state/state.html',
+        controller: 'StateMasterController',
+        controllerAs: 'stateMaster'
+      })
+       .state('location', {
+        url: '/location/master',
+        templateUrl: 'app/location/location.html',
+        controller: 'LocationMasterController',
+        controllerAs: 'locationMaster'
+      })
   });

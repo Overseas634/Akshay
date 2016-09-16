@@ -19,11 +19,11 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body">
+                     {{StandardMaster.medium}}{{medium}}
                      <label > Medium</label>
-                     <select class="form-control">
-                        <option>English</option>
-                        <option>Marathi</option>
-                     </select>
+                     <select name="repeatSelect" id="repeatSelect" ng-model="StandardMaster.medium">
+                         <option ng-repeat="option in StandardMaster.medium" value="{{option.name}}">{{option.name}}</option>
+                      </select>
                      <br >
 
                      <label > Standard</label>
@@ -33,7 +33,7 @@
                   <!-- /.box-body -->
                </div>
             </form>
-            <table>
+            <!-- <table>
                <thead>
                   <tr>
                      <th>sr. no.</th>
@@ -51,7 +51,7 @@
                   </tr>
                </tbody>
                
-            </table>
+            </table> -->
          </div>
          <div class="col-sm-5">
             <div class="box box box-primary">

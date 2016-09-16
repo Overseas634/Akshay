@@ -14,7 +14,12 @@ class StandardMasterController {
     }, 1000, 1);
     return deferred.promise;
   };
- 
+   $http.get('/api/mediums').then(response => {
+      this.medium = response.data;
+      console.log(response.data)
+      socket.syncUpdates('medium', this.medium);
+    });
+
   $scope.gridOptions = {
     exporterMenuCsv: false,
     enableGridMenu: true,

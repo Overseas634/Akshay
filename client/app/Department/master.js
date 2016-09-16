@@ -63,12 +63,15 @@ if($scope.counter>1){
 // $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
 // $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.OPTIONS);
 // };
+socket.syncUpdates('departments',function  (data) {
+console.log(data)  // body...
+})
  this.$http = $http;
    $http.get('/api/departments').then(response => {
       this.awesomeThings = response.data;
     $scope.gridOptions.data = this.awesomeThings
     $interval( function() {$scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);}, 0, 1);
-      this.socket.syncUpdates('departments', $scope.gridOptions.data);
+      socket.syncUpdates('department', $scope.gridOptions.data);
     });
 
 
@@ -76,10 +79,15 @@ if($scope.counter>1){
 
   addDepartment() {
     
-    if ($scope.newDepartment) {
-      this.$http.post('/api/departments', { name: $scope.newDepartment });
-      this.socket.syncUpdates('departments', this.$scope.gridOptions.data);
-      this.newDepartment = '';
+    if (this.$scope.newDepartment) {
+      this.$http.post('/api/departments', { name: this.$scope.newDepartment }).then(function  (data) {
+        console.log(data.status) 
+        // if(data.status ==201)
+     
+      // this.socket.syncUpdates('departments', );
+      });
+       // this.$scope.newDepartment = '';
+      
     }
   }
 }

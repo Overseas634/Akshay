@@ -2,83 +2,76 @@
 
 (function() {
 
-class countryController {
+class CountryMasterController {
 
-  constructor($http, $scope,$interval) {
+  constructor($http, $scope,$interval, socket, $log) {
 
-   $scope.port=[{}]
- $scope.addPort = function()
- {
-  $scope.port.push({})
- }
+ this.socket = socket;
+ this.$scope =$scope;
+ this.newCountry={};
+ $scope.counter = 0;
+ this.tempId;
+ $scope.gridOptions = { enableRowSelection: true, enableRowHeaderSelection: false };
+
+$scope.gridOptions.columnDefs = [
+{ name: 'name'},
+{name :'countryCode'},
+{name:'currency'}
+
+];
+// $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
+$scope.gridOptions.enableRowSelection= true;
+$scope.gridOptions.multiSelect = false;
+$scope.gridOptions.modifierKeysToMultiSelect = false;
+$scope.gridOptions.noUnselect = true;
+
+ $scope.gridOptions.onRegisterApi = function(gridApi){
+//set gridApi on scope
+
+console.log($scope.counter)
+$scope.gridApi = gridApi;
+gridApi.selection.on.rowSelectionChanged($scope,function(row){
+$scope.counter = parseInt($scope.counter)+1;
+var msg = 'row selected ' + row.isSelected;
+var objID =$scope.gridApi.selection.getSelectedRows()[0];
+
+if($scope.counter>1){
+  console.log(objID)
+  this.tempId =objID._id;
+  $scope.newCountry=objID.name;
+  console.log($scope.newCountry)
+}
+});
+
+};
+
+socket.syncUpdates('countries',function  (data) {
+console.log(data)  // body...
+})
+ this.$http = $http;
+   $http.get('/api/countries').then(response => {
+      this.awesomeThings = response.data;
+    $scope.gridOptions.data = this.awesomeThings
+    $interval( function() {$scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);}, 0, 1);
+      socket.syncUpdates('countries', $scope.gridOptions.data);
+    });
 
 
-    var fakeI18n = function( title ){
-    var deferred = $q.defer();
-    $interval( function() {
-      deferred.resolve( 'col: ' + title );
-    }, 1000, 1);
-    return deferred.promise;
-  };
+  }
+
+  addCountry() {
+    console.log('hahhha',this.newCountry)
+    if (this.newCountry) {
+      this.$http.post('/api/countries',this.newCountry).then(function  (data) {
+        console.log(data.status) 
  
-  $scope.gridOptions = {
-    exporterMenuCsv: false,
-    enableGridMenu: true,
-    gridMenuTitleFilter: fakeI18n,
-    columnDefs: [
-      { name: 'Name' },
-      { name: 'code', enableHiding: false },
-      {name:'Currency'}
-      // { name: 'company' }
-    ],
-    gridMenuCustomItems: [
-      {
-        title: 'Rotate Grid',
-        action: function ($event) {
-          this.grid.element.toggleClass('rotated');
-        },
-        order: 210
-      }
-    ],
-    onRegisterApi: function( gridApi ){
-      $scope.gridApi = gridApi;
- 
-      // interval of zero just to allow the directive to have initialized
-      $interval( function() {
-        gridApi.core.addToGridMenu( gridApi.grid, [{ title: 'Dynamic item', order: 100}]);
-      }, 0, 1);
- 
-      gridApi.core.on.columnVisibilityChanged( $scope, function( changedColumn ){
-        $scope.columnChanged = { name: changedColumn.colDef.name, visible: changedColumn.colDef.visible };
       });
+      
     }
-  };
-  //   this.$http = $http;
-  //   this.awesomeThings = [];
-
-  //   $http.get('/api/things').then(response => {
-  //     this.awesomeThings = response.data;
-  //     socket.syncUpdates('thing', this.awesomeThings);
-  //   });
-
-  //   $scope.$on('$destroy', function() {
-  //     socket.unsyncUpdates('thing');
-  //   });
-  // }
-
-  // addThing() {
-  //   if (this.newThing) {
-  //     this.$http.post('/api/things', { name: this.newThing });
-  //     this.newThing = '';
-  //   }
-  // }
-
-  // deleteThing(thing) {
-  //   this.$http.delete('/api/things/' + thing._id);
   }
 }
 
 angular.module('erpApp')
-  .controller('countryController', countryController);
+  .controller('CountryMasterController', CountryMasterController);
 
 })();
